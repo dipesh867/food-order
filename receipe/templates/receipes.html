@@ -1,0 +1,43 @@
+
+    {% extends 'base.html' %}
+    {% block start %}
+    
+      
+        <!--search bar content starts here-->
+        <br>
+        <a href="{% url 'index'%}" class="btn btn-danger ms-3">Add Food</a>
+        <a href="{% url 'food' %}" class="btn btn-primary ms-3">order food</a>
+        <hr>
+       
+        <table class="table word-wrap col mx-auto" style="margin-top: 30px;">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Food name</th>
+                <th scope="col">Food description</th>
+                <th scope="col" class="pr">price</th>
+                <th scope="col">Image</th>
+                <th scope="col">actions</th>
+              </tr>
+            </thead>
+            <tbody class="mt-5"> 
+                {%for i in food %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td><b>{{i.name}}</b></td>
+                <td class="wid">{{i.description}}</td>
+                <td class="pr"><b>{{i.price}}</b></td>
+                <td><img src="/media/{{i.image}}" style="width: 70px;"></td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'delete' i.id %}">Delete</a>
+                    <a class="btn btn-success" href="{% url 'update' i.id %}">Update</a>
+                </td>
+                
+              </tr>
+              {%endfor%}
+            </tbody>
+         
+          </table>
+
+    </div>
+    {%endblock start%}

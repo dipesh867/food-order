@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block start %}
+<style>
+    .add{
+        text-align:center;
+        color:blue;
+        border-bottom:2px solid gray;
+        padding-bottom:5px;
+    }
+</style>
+<div class="container mt-5">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <h2 class="add">Add Recepies</h2>
+        <div class="mb-3">
+            <label for="food  name" class="form-label">Food name</label>
+            <input name="name" value="{{food.name}}" type="text" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="food description" class="form-label">Food description</label>
+            <textarea name="description" required  class="form-control">{{food.description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="food price" class="form-label">Price</label>
+            <input name="price" value="{{food.price}}" type="text" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="food image" class="form-label">Food Image</label>
+            <input type="file" name="image" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">update</button>
+    </form>
+</div>
+{% endblock start %}
+    

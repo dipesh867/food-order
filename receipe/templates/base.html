@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">   
+    <title>book</title>
+</head>
+<body>
+  <style>
+    .table td {
+          word-wrap: break-word; 
+          word-break: break-word;  
+          height:100px;
+          margin-left: 20px;
+          margin-right: 20px;
+          max-width:300px;
+          max-height: auto;
+          
+      }
+     
+  .login{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+     }
+    
+  .pr{
+      width: 150px;
+      text-align: center;
+      
+    }
+  .aaa{
+    color:white;
+    font-weight: 500;
+  }
+  
+
+</style>
+    <nav class="navbar bg-primary shadow-lg p-1">
+        <div class="container-fluid">
+          <a class="navbar-brand" style="font-size: 24px; font-weight: 500;color: rgb(255, 255, 255); ">Foodapp</a>
+          
+          <form class="d-flex" role="search">
+            {%if request.user.is_authenticated%}
+            <div class="login">
+                <div class="aaa">hey, {{user.username}} !</div>
+                <a href="{% url 'logout' %}" class="btn btn-secondary" type="submit">logout</a>
+            </div>
+            {%else%}
+            <a href="{% url 'login'%}" class="btn btn-success" type="submit">login</a>
+            {%endif%} 
+          </form>
+        </div>
+      </nav>
+      {% if messages %}
+        <div id="message-container" class="position-fixed top-0 end-0 pt-5" style="z-index: 1050;">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-lg" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+      
+    {% block start %}
+    
+        
+    {% endblock start%}
+</body>
+<script>
+  // Auto-hide messages after 2 seconds (2000ms)
+  setTimeout(function () {
+      let alerts = document.querySelectorAll(".alert");
+      alerts.forEach(function (alert) {
+          let bsAlert = new bootstrap.Alert(alert);
+          bsAlert.close();
+      });
+  }, 2000);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>

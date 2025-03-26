@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% block start %}
+
+   
+    <!--search bar content starts here-->
+    <br>
+    <a href="{% url 'receipe'%}" class="btn btn-danger ms-3">Food List</a>
+    <a href="{% url 'food' %}" class="btn btn-primary ms-3">order food</a>
+    <hr>
+    <table class="px-6 table  col mx-auto" style="margin-top: 30px;">
+        <thead>
+          <tr>
+            <th scope="col" clas="px-6">Food name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total price</th>
+            <th scope="col">Phone No.</th>
+            <th scope="col">Address</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="mt-5"> 
+            {%for i in food %}
+
+          <tr>
+            <td><b>{{i.order.name}}</b></td>
+            <td>{{i.quantity}}</td>
+            <td><b>Rs. {{i.cost}}</b></td>
+            <td>{{i.phone}}</td>
+            <td>{{i.address}}</td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'cancel' i.id %}">Cancel</a>
+            </td>
+            
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+</div>
+{%endblock start%}

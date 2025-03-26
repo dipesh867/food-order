@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+{% block start %}
+
+{% csrf_token %}
+        <!--search bar content starts here-->
+        <br>
+        <a href="{% url 'receipe'%}" class="btn btn-danger ms-3">Food List</a>
+        <a href="{% url 'myorder'%}" class="btn btn-primary ms-3">My orders</a>
+
+        <div class="mt5 mx-auto search">
+            <div class="mx-auto col-6">
+            <form action="">
+                <div class="mb-3 mt-5" style="display: flex; gap: 20px;">
+                    <input name="search" type="text" name="search"  class="form-control" placeholder="search food">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+            </div> 
+        </div>
+        <hr>
+    <table class="table  col mx-auto" style="margin-top: 30px;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Food name</th>
+            <th scope="col">Food description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">actions</th>
+          </tr>
+        </thead>
+        <tbody class="mt-5"> 
+            {%for i in food %}
+          <tr>
+            <td scope="row">{{forloop.counter}}</td>
+            <td><b>{{i.name}}</b></td>
+            <td>{{i.description}}</td>
+            <td><b>{{i.price}}</b></td>
+            <td><img src="/media/{{i.image}}" style="width: 70px;"></td>
+            <td>
+                <a class="btn btn-success" href="{% url 'order' i.id %}">order</a>
+            </td>
+            
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+</div>
+{%endblock start%}

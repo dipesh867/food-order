@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block start %}
+<style>
+    .add{
+        text-align:center;
+        color:blue;
+        border-bottom:2px solid gray;
+        padding-bottom:5px;
+    }
+</style>
+<div class="container mt-5">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <h2 class="add">Order Food</h2><br>
+        <div>Food Name: <b>{{food.name}}</b></div>
+        <div>Unit Price: <b>{{food.price}}</b></div>
+        <hr>
+        
+        <div class="mb-3">
+            <label for="receipe name" class="form-label">Address</label>
+            <input name="address" value="{{address}}" type="text" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="receipe name" class="form-label">Quantity</label>
+            <input name="quantity" value="{{quantity}}" type="number" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="receipe name" class="form-label">Phone Number</label>
+            <input name="phone" value="{{phone}}"  type="number" required class="form-control">
+        </div>
+        
+        
+        <button type="submit" class="btn btn-success">Order</button>
+    </form>
+</div>
+{% endblock start %}
+    
